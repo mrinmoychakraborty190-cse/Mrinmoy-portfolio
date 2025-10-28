@@ -65,24 +65,18 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error(result.error || "Failed to save data");
       }
 
-      // Redirect based on purpose
-      const purpose = formData.purpose.toLowerCase();
-
-      // === MODIFICATION ===
-      // Both "interview" and "training" redirects have been removed.
+      // === FIX ===
+      // I have removed the conditional redirects (if/else if) that were
+      // causing the 404 error.
+      // Now, all successful submissions will show the alert and reset the form.
       
-      if (purpose === "bikedelivery") {
-        window.location.href = "vehicle.html";
-      } else if (purpose === "accessories") {
-        window.location.href = "accessories.html";
-      } else {
-        // "Interview", "Training", and all "Other" purposes will now run this code
-        alert("✅ Reception data saved!");
-        form.reset();
-        otherPurposeGroup.classList.add("hidden");
-        // Hide the appointment group on reset
-        appointmentDetailsGroup.classList.add("hidden"); 
-      }
+      alert("✅ Reception data saved!");
+      form.reset();
+      otherPurposeGroup.classList.add("hidden");
+      // Hide the appointment group on reset
+      appointmentDetailsGroup.classList.add("hidden"); 
+
+      // === END OF FIX ===
 
     } catch (error) {
       console.error("Error submitting reception data:", error);
