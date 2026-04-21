@@ -24,6 +24,7 @@
         <div class="nav-links">
           <a href="#about">About</a>
           <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
           <a href="#skills">Skills</a>
           <a href="#education">Education</a>
           <a href="#certifications">Certifications</a>
@@ -41,7 +42,7 @@
           </p>
 
           <div class="hero-actions">
-            <a class="button button-primary" href="#contact">Contact Me</a>
+            <a class="button button-primary" href="#projects">View Projects</a>
             <a class="button button-secondary" href="https://linkedin.com/in/mrinmoy-chakraborty-ab713b248" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
 
@@ -135,6 +136,128 @@
             </div>
             <a class="card-link" href="#contact">Start a conversation</a>
           </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section dashboard-section" data-reveal>
+        <div class="section-heading">
+          <p class="eyebrow">Project</p>
+          <h2>Swiggy order analytics live dashboard.</h2>
+          <p class="section-intro">
+            Interactive analysis of 500 food-delivery orders across cities, restaurants, payments, delivery performance, ratings, and cancellation patterns.
+          </p>
+        </div>
+
+        <div class="dashboard-toolbar" aria-label="Dashboard filters">
+          <label>
+            <span>City</span>
+            <select id="cityFilter">
+              <option value="all">All cities</option>
+            </select>
+          </label>
+          <label>
+            <span>Restaurant</span>
+            <select id="restaurantFilter">
+              <option value="all">All restaurants</option>
+            </select>
+          </label>
+          <label>
+            <span>Status</span>
+            <select id="statusFilter">
+              <option value="all">All statuses</option>
+            </select>
+          </label>
+          <button class="button button-secondary dashboard-reset" type="button" id="resetDashboard">Reset</button>
+        </div>
+
+        <div class="dashboard-status" id="dashboardStatus">Loading Swiggy data...</div>
+
+        <div class="kpi-grid" aria-label="Dashboard key metrics">
+          <article class="kpi-card">
+            <span>Total Orders</span>
+            <strong id="kpiOrders">-</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Total Revenue</span>
+            <strong id="kpiRevenue">-</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Avg Delivery Time</span>
+            <strong id="kpiDelivery">-</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Cancellation Rate</span>
+            <strong id="kpiCancel">-</strong>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="chart-card wide-chart">
+            <div>
+              <p class="project-type">Revenue trend</p>
+              <h3>Daily order value</h3>
+            </div>
+            <canvas id="dailyRevenueChart" aria-label="Daily revenue line chart"></canvas>
+          </article>
+          <article class="chart-card">
+            <div>
+              <p class="project-type">City view</p>
+              <h3>Revenue by city</h3>
+            </div>
+            <canvas id="cityRevenueChart" aria-label="Revenue by city bar chart"></canvas>
+          </article>
+          <article class="chart-card">
+            <div>
+              <p class="project-type">Order health</p>
+              <h3>Status mix</h3>
+            </div>
+            <canvas id="statusChart" aria-label="Order status doughnut chart"></canvas>
+          </article>
+          <article class="chart-card wide-chart">
+            <div>
+              <p class="project-type">Operations</p>
+              <h3>Average delivery time by restaurant</h3>
+            </div>
+            <canvas id="restaurantDeliveryChart" aria-label="Average delivery time by restaurant bar chart"></canvas>
+          </article>
+        </div>
+
+        <div class="insight-grid">
+          <article class="info-panel">
+            <h3>Auto Findings</h3>
+            <ul class="insight-list" id="insightList"></ul>
+          </article>
+          <article class="info-panel">
+            <h3>Payment Mix</h3>
+            <div class="payment-list" id="paymentList"></div>
+          </article>
+        </div>
+
+        <div class="table-card">
+          <div class="table-heading">
+            <div>
+              <p class="project-type">Recent records</p>
+              <h3>Filtered orders</h3>
+            </div>
+            <span id="tableCount">0 records</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Date</th>
+                  <th>City</th>
+                  <th>Restaurant</th>
+                  <th>Value</th>
+                  <th>Delivery</th>
+                  <th>Status</th>
+                  <th>Rating</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTable"></tbody>
+            </table>
+          </div>
         </div>
       </section>
 
@@ -249,6 +372,7 @@
 
   <button class="back-to-top" type="button" aria-label="Back to top">Top</button>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
