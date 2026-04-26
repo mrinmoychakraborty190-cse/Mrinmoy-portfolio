@@ -12,8 +12,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="animation.css">
 </head>
 <body>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="ambient-scene" aria-hidden="true">
+    <span class="ambient-orb one"></span>
+    <span class="ambient-orb two"></span>
+    <span class="ambient-orb three"></span>
+  </div>
+
   <div class="page-shell">
     <nav class="topbar" data-reveal>
       <a class="brand" href="index.html#home" aria-label="Mrinmoy home">Mrinmoy</a>
@@ -31,7 +40,7 @@
       <section class="hero-copy" data-reveal>
         <p class="eyebrow">Projects</p>
         <h1>Analytics projects built for clear decisions.</h1>
-        <p class="hero-subtitle">Interactive dashboards, business findings, and focused reporting work.</p>
+        <p class="hero-subtitle">Project work with <span class="typing-line" data-roles="live filters|animated charts|clean KPIs|quick findings"></span></p>
         <p class="hero-text">
           This page keeps project work separate from the home page, so visitors can move directly into the dashboard experience without losing the main portfolio flow.
         </p>
@@ -154,5 +163,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="script.js"></script>
+  <script src="animation.js"></script>
 </body>
 </html>
