@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Projects by Mrinmoy Chakraborty, including a Swiggy order analytics dashboard."
+  >
+  <title>Projects | Mrinmoy Chakraborty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="section" data-reveal>
+      <nav class="topbar">
+        <a class="brand" href="index.html#home">
+          <span class="brand-name">Mrinmoy</span>
+        </a>
+        <div class="nav-links">
+          <a href="index.html#about">About</a>
+          <a href="index.html#experience">Experience</a>
+          <a href="projects.html">Projects</a>
+          <a href="index.html#skills">Skills</a>
+          <a href="index.html#education">Education</a>
+          <a href="index.html#certifications">Certifications</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </nav>
+      <div class="section-heading">
+        <p class="eyebrow">Projects</p>
+        <h1>Data projects built for clear decisions.</h1>
+        <p class="hero-text">
+          Explore practical analytics work with live filters, KPIs, charts, and findings designed to make business data easier to understand.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section id="projects" class="section dashboard-section" data-reveal>
+        <div class="section-heading">
+          <p class="eyebrow">Project</p>
+          <h2>Swiggy order analytics live dashboard.</h2>
+          <p class="section-intro">
+            Interactive analysis of 500 food-delivery orders across cities, restaurants, payments, delivery performance, ratings, and cancellation patterns.
+          </p>
+        </div>
+
+        <div class="dashboard-toolbar" aria-label="Dashboard filters">
+          <label>
+            <span>City</span>
+            <select id="cityFilter">
+              <option value="all">All cities</option>
+            </select>
+          </label>
+          <label>
+            <span>Restaurant</span>
+            <select id="restaurantFilter">
+              <option value="all">All restaurants</option>
+            </select>
+          </label>
+          <label>
+            <span>Status</span>
+            <select id="statusFilter">
+              <option value="all">All statuses</option>
+            </select>
+          </label>
+          <button class="button button-secondary dashboard-reset" type="button" id="resetDashboard">Reset</button>
+        </div>
+
+        <div class="dashboard-status" id="dashboardStatus">Loading Swiggy data...</div>
+
+        <div class="kpi-grid" aria-label="Dashboard key metrics">
+          <article class="kpi-card">
+            <span>Total Orders</span>
+            <strong id="kpiOrders">-</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Total Revenue</span>
+            <strong id="kpiRevenue">-</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Avg Delivery Time</span>
+            <strong id="kpiDelivery">-</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Cancellation Rate</span>
+            <strong id="kpiCancel">-</strong>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="chart-card wide-chart">
+            <div>
+              <p class="project-type">Revenue trend</p>
+              <h3>Daily order value</h3>
+            </div>
+            <canvas id="dailyRevenueChart" aria-label="Daily revenue line chart"></canvas>
+          </article>
+          <article class="chart-card">
+            <div>
+              <p class="project-type">City view</p>
+              <h3>Revenue by city</h3>
+            </div>
+            <canvas id="cityRevenueChart" aria-label="Revenue by city bar chart"></canvas>
+          </article>
+          <article class="chart-card">
+            <div>
+              <p class="project-type">Order health</p>
+              <h3>Status mix</h3>
+            </div>
+            <canvas id="statusChart" aria-label="Order status doughnut chart"></canvas>
+          </article>
+          <article class="chart-card wide-chart">
+            <div>
+              <p class="project-type">Operations</p>
+              <h3>Average delivery time by restaurant</h3>
+            </div>
+            <canvas id="restaurantDeliveryChart" aria-label="Average delivery time by restaurant bar chart"></canvas>
+          </article>
+        </div>
+
+        <div class="insight-grid">
+          <article class="info-panel">
+            <h3>Findings</h3>
+            <ul class="insight-list" id="insightList"></ul>
+          </article>
+          <article class="info-panel">
+            <h3>Payment Mix</h3>
+            <div class="payment-list" id="paymentList"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Mrinmoy Chakraborty. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <button class="back-to-top" type="button" aria-label="Back to top">Top</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
