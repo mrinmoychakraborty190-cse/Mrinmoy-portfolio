@@ -10,33 +10,42 @@
   <title>Projects | Mrinmoy Chakraborty</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="page-shell">
-    <header class="section" data-reveal>
-      <nav class="topbar">
-        <a class="brand" href="index.html#home">
-          <span class="brand-name">Mrinmoy</span>
-        </a>
-        <div class="nav-links">
-          <a href="index.html#about">About</a>
-          <a href="index.html#experience">Experience</a>
-          <a href="projects.html">Projects</a>
-          <a href="index.html#skills">Skills</a>
-          <a href="index.html#education">Education</a>
-          <a href="index.html#certifications">Certifications</a>
-          <a href="index.html#contact">Contact</a>
-        </div>
-      </nav>
-      <div class="section-heading">
-        <p class="eyebrow">Projects</p>
-        <h1>Data projects built for clear decisions.</h1>
-        <p class="hero-text">
-          Explore practical analytics work with live filters, KPIs, charts, and findings designed to make business data easier to understand.
-        </p>
+    <nav class="topbar" data-reveal>
+      <a class="brand" href="index.html#home" aria-label="Mrinmoy home">Mrinmoy</a>
+      <div class="nav-links" aria-label="Primary navigation">
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Work</a>
+        <a href="index.html#resume">Resume</a>
+        <a href="projects.html">Projects</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#contact">Contact</a>
       </div>
+    </nav>
+
+    <header class="hero project-page-hero">
+      <section class="hero-copy" data-reveal>
+        <p class="eyebrow">Projects</p>
+        <h1>Analytics projects built for clear decisions.</h1>
+        <p class="hero-subtitle">Interactive dashboards, business findings, and focused reporting work.</p>
+        <p class="hero-text">
+          This page keeps project work separate from the home page, so visitors can move directly into the dashboard experience without losing the main portfolio flow.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">Open Dashboard</a>
+          <a class="button button-secondary" href="index.html#home">Back Home</a>
+        </div>
+      </section>
+      <aside class="profile-card" data-reveal>
+        <div class="avatar">BI</div>
+        <p class="card-label">Featured Project</p>
+        <h2>Swiggy Order Analytics</h2>
+        <p>Live filters, KPI cards, charts, findings, and payment mix analysis designed for fast business scanning.</p>
+      </aside>
     </header>
 
     <main>
