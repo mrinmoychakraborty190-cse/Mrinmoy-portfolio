@@ -62,7 +62,9 @@ const dashboardEls = {
   tableCount: document.getElementById("tableCount"),
 };
 
-const chartPalette = ["#0f766e", "#f97316", "#2563eb", "#9333ea", "#64748b", "#db2777"];
+const chartPalette = ["#20c997", "#f6a945", "#f472b6", "#60a5fa", "#a78bfa", "#f87171"];
+const chartTextColor = "#c3b8a8";
+const chartGridColor = "rgba(255, 255, 255, 0.08)";
 const charts = {};
 let swiggyOrders = [];
 
@@ -139,7 +141,7 @@ const createOrUpdateChart = (id, type, labels, data, label, options = {}) => {
         {
           label,
           data,
-          borderColor: options.borderColor || "#0f766e",
+          borderColor: options.borderColor || "#20c997",
           backgroundColor: options.backgroundColor || chartPalette,
           borderWidth: 2,
           borderRadius: type === "bar" ? 10 : 0,
@@ -151,8 +153,12 @@ const createOrUpdateChart = (id, type, labels, data, label, options = {}) => {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      color: chartTextColor,
       plugins: {
-        legend: { display: type === "doughnut" },
+        legend: {
+          display: type === "doughnut",
+          labels: { color: chartTextColor },
+        },
         tooltip: {
           callbacks: {
             label: (context) => {
@@ -164,10 +170,15 @@ const createOrUpdateChart = (id, type, labels, data, label, options = {}) => {
         },
       },
       scales: type === "doughnut" ? {} : {
-        x: { grid: { display: false } },
+        x: {
+          grid: { display: false },
+          ticks: { color: chartTextColor },
+        },
         y: {
           beginAtZero: true,
+          grid: { color: chartGridColor },
           ticks: {
+            color: chartTextColor,
             callback: (value) => (options.currency ? formatCurrency(value) : value),
           },
         },
@@ -200,7 +211,7 @@ const updateCharts = (orders) => {
     daily.map((item) => item.label),
     daily.map((item) => item.value),
     "Revenue",
-    { currency: true, backgroundColor: "rgba(15, 118, 110, 0.12)", fill: true }
+    { currency: true, backgroundColor: "rgba(32, 201, 151, 0.14)", fill: true }
   );
   createOrUpdateChart(
     "cityRevenueChart",
