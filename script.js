@@ -265,6 +265,10 @@ const updateInsights = (orders) => {
 };
 
 const updateTable = (orders) => {
+  if (!dashboardEls.table || !dashboardEls.tableCount) {
+    return;
+  }
+
   const rows = [...orders]
     .sort((a, b) => new Date(b.Order_Date) - new Date(a.Order_Date) || b.Order_ID - a.Order_ID)
     .slice(0, 12);
