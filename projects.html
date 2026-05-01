@@ -42,29 +42,64 @@
         <h1>Analytics projects built for clear decisions.</h1>
         <p class="hero-subtitle">Project work with <span class="typing-line" data-roles="live filters|animated charts|clean KPIs|quick findings"></span></p>
         <p class="hero-text">
-          This page keeps project work separate from the home page, so visitors can move directly into the dashboard experience without losing the main portfolio flow.
+          This page keeps project work separate from the home page, so visitors can explore the project first and open the live dashboard only when they want to interact with it.
         </p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#projects">Open Dashboard</a>
-          <a class="button button-secondary" href="index.html#home">Back Home</a>
+          <button class="button button-primary" type="button" data-open-dashboard>Open Dashboard</button>
+          <button class="button button-secondary" type="button" data-download-xlsx>Download Raw Data</button>
+          <a class="button button-ghost" href="index.html#home">Back Home</a>
         </div>
       </section>
       <aside class="profile-card" data-reveal>
         <div class="avatar">BI</div>
         <p class="card-label">Featured Project</p>
         <h2>Swiggy Order Analytics</h2>
-        <p>Live filters, KPI cards, charts, findings, and payment mix analysis designed for fast business scanning.</p>
+        <p>Live filters, KPI cards, charts, findings, payment mix analysis, and downloadable raw data for deeper review.</p>
       </aside>
     </header>
 
     <main>
-      <section id="projects" class="section dashboard-section" data-reveal>
+      <section id="projects" class="section" data-reveal>
         <div class="section-heading">
           <p class="eyebrow">Project</p>
+          <h2>Swiggy order analytics dashboard.</h2>
+          <p class="section-intro">
+            A delivery analytics project built on 500 Swiggy orders to surface revenue trends, cancellation behavior, restaurant performance, and payment patterns.
+          </p>
+        </div>
+
+        <article class="project-feature interactive-card project-overview-card">
+          <div>
+            <p class="project-type">Live dashboard project</p>
+            <h3>What visitors can explore</h3>
+            <p>
+              Filter the data by city, restaurant, and order status, inspect KPI changes instantly, review chart-based findings, and download the raw dataset in Excel format.
+            </p>
+            <div class="tag-row">
+              <span>Interactive Filters</span>
+              <span>KPI Tracking</span>
+              <span>Chart Analysis</span>
+              <span>Excel Download</span>
+            </div>
+          </div>
+          <div class="project-overview-actions">
+            <button class="button button-primary" type="button" data-open-dashboard>Open Dashboard</button>
+            <button class="button button-secondary" type="button" data-download-xlsx>Download Raw Data</button>
+          </div>
+        </article>
+      </section>
+
+      <section id="dashboardPanel" class="section dashboard-section dashboard-panel" data-reveal hidden>
+        <div class="section-heading">
+          <p class="eyebrow">Dashboard</p>
           <h2>Swiggy order analytics live dashboard.</h2>
           <p class="section-intro">
             Interactive analysis of 500 food-delivery orders across cities, restaurants, payments, delivery performance, ratings, and cancellation patterns.
           </p>
+        </div>
+
+        <div class="dashboard-actions">
+          <button class="button button-secondary" type="button" data-download-xlsx>Download Raw Data (.xlsx)</button>
         </div>
 
         <div class="dashboard-toolbar" aria-label="Dashboard filters">
@@ -162,6 +197,7 @@
   <button class="back-to-top" type="button" aria-label="Back to top">Top</button>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="script.js"></script>
   <script src="animation.js"></script>
 </body>
