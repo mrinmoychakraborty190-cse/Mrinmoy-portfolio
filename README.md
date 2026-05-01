@@ -11,7 +11,7 @@ This repository contains a static personal portfolio website for Mrinmoy Chakrab
    - **Branch**: `main` (or your default branch), `/root`
 4. Save and wait ~1-2 minutes.
 5. Your site will be available at:
-   `https://<your-github-username>.github.io/Mrinmoy-portfolio/`
+   `https://mrinmoychakraborty190-cse.github.io/Mrinmoy-portfolio/`
 
 ## Local preview
 
