@@ -8,6 +8,30 @@
   overflow: hidden;
 }
 
+.project-overview-card {
+  align-items: center;
+}
+
+.project-overview-actions,
+.dashboard-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.project-overview-actions {
+  justify-content: flex-end;
+}
+
+.dashboard-panel {
+  border-top: 1px solid var(--line);
+}
+
+.dashboard-actions {
+  margin-bottom: 18px;
+}
+
 .dashboard-toolbar {
   display: grid;
   grid-template-columns: repeat(3, minmax(160px, 1fr)) auto;
@@ -276,6 +300,10 @@
 
   .wide-chart {
     grid-column: span 1;
+  }
+
+  .project-overview-actions {
+    justify-content: flex-start;
   }
 }
 
