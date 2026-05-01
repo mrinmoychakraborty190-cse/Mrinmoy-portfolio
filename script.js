@@ -3,13 +3,19 @@ if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
 }
 
-const dashboardStyles = document.createElement("link");
-dashboardStyles.rel = "stylesheet";
-dashboardStyles.href = "dashboard.css";
-document.head.appendChild(dashboardStyles);
+const dashboardCssExists = [...document.styleSheets].some((sheet) => sheet.href && sheet.href.includes("dashboard.css"));
+if (!dashboardCssExists) {
+  const dashboardStyles = document.createElement("link");
+  dashboardStyles.rel = "stylesheet";
+  dashboardStyles.href = "dashboard.css";
+  document.head.appendChild(dashboardStyles);
+}
 
 const revealItems = document.querySelectorAll("[data-reveal]");
 const backToTop = document.querySelector(".back-to-top");
+const dashboardPanel = document.getElementById("dashboardPanel");
+const dashboardOpenButtons = document.querySelectorAll("[data-open-dashboard]");
+const downloadButtons = document.querySelectorAll("[data-download-xlsx]");
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
@@ -67,6 +73,7 @@ const chartTextColor = "#c3b8a8";
 const chartGridColor = "rgba(255, 255, 255, 0.08)";
 const charts = {};
 let swiggyOrders = [];
+let dashboardInitialized = false;
 
 const formatCurrency = (value) =>
   new Intl.NumberFormat("en-IN", {
@@ -188,6 +195,10 @@ const createOrUpdateChart = (id, type, labels, data, label, options = {}) => {
 };
 
 const updateKpis = (orders) => {
+  if (!dashboardEls.orders || !dashboardEls.revenue || !dashboardEls.delivery || !dashboardEls.cancel) {
+    return;
+  }
+
   const revenue = orders.reduce((sum, order) => sum + Number(order.Order_Value || 0), 0);
   const cancelled = orders.filter((order) => order.Order_Status === "Cancelled").length;
   const cancelRate = orders.length ? (cancelled / orders.length) * 100 : 0;
@@ -238,6 +249,10 @@ const updateCharts = (orders) => {
 };
 
 const updateInsights = (orders) => {
+  if (!dashboardEls.insights || !dashboardEls.payments) {
+    return;
+  }
+
   if (!orders.length) {
     dashboardEls.insights.innerHTML = "<li>No records match the selected filters.</li>";
     dashboardEls.payments.innerHTML = "";
@@ -316,8 +331,61 @@ const renderDashboard = () => {
   }
 };
 
+const showDashboard = async () => {
+  if (!dashboardPanel) {
+    return;
+  }
+
+  dashboardPanel.hidden = false;
+  requestAnimationFrame(() => {
+    dashboardPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  dashboardOpenButtons.forEach((button) => {
+    button.textContent = "Dashboard Open";
+    button.setAttribute("aria-expanded", "true");
+  });
+
+  if (!dashboardInitialized) {
+    await initDashboard();
+  }
+};
+
+const downloadRawDataXlsx = () => {
+  if (!swiggyOrders.length || typeof XLSX === "undefined") {
+    if (dashboardEls.status) {
+      dashboardEls.status.textContent = "Raw data is still loading. Please try again in a moment.";
+    }
+    return;
+  }
+
+  const worksheet = XLSX.utils.json_to_sheet(swiggyOrders);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Swiggy Data");
+  XLSX.writeFile(workbook, "swiggy_raw_data.xlsx");
+};
+
+dashboardOpenButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    showDashboard();
+  });
+});
+
+downloadButtons.forEach((button) => {
+  button.addEventListener("click", async () => {
+    if (!swiggyOrders.length) {
+      await initDashboard();
+    }
+    downloadRawDataXlsx();
+  });
+});
+
 const initDashboard = async () => {
-  if (!document.getElementById("projects")) {
+  if (!document.getElementById("projects") && !dashboardPanel) {
+    return;
+  }
+
+  if (dashboardInitialized) {
     return;
   }
 
@@ -343,6 +411,7 @@ const initDashboard = async () => {
       renderDashboard();
     });
 
+    dashboardInitialized = true;
     renderDashboard();
   } catch (error) {
     if (dashboardEls.status) {
@@ -352,4 +421,6 @@ const initDashboard = async () => {
   }
 };
 
-initDashboard();
+if (!dashboardPanel) {
+  initDashboard();
+}
